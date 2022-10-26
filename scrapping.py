@@ -92,22 +92,14 @@ class Scraping:
 
         while True:
             driver.execute_script(f"window.scrollTo({initialScroll},{finalScroll})")
-            # this command scrolls the window starting from
-            # the pixel value stored in the initialScroll
-            # variable to the pixel value stored at the
-            # finalScroll variable
+            
             initialScroll = finalScroll
             finalScroll += 1000
-        
-            # we will stop the script for 3 seconds so that
-            # the data can load
+
             time.sleep(1)
-            # You can change it as per your needs and internet speed
         
             end = time.time()
-        
-            # We will scroll for 20 seconds.
-            # You can change it as per your needs and internet speed
+
             if round(end - start) > 5:
                 break
         soup = BeautifulSoup(driver.page_source, 'lxml')
@@ -118,28 +110,20 @@ class Scraping:
         driver.get(education_page_url)
         start = time.time()
         
-        # will be used in the while loop
         initialScroll = 0
         finalScroll = 1000
 
         while True:
             driver.execute_script(f"window.scrollTo({initialScroll},{finalScroll})")
-            # this command scrolls the window starting from
-            # the pixel value stored in the initialScroll
-            # variable to the pixel value stored at the
-            # finalScroll variable
+
             initialScroll = finalScroll
             finalScroll += 1000
         
-            # we will stop the script for 3 seconds so that
-            # the data can load
             time.sleep(1)
             # You can change it as per your needs and internet speed
         
             end = time.time()
         
-            # We will scroll for 20 seconds.
-            # You can change it as per your needs and internet speed
             if round(end - start) > 5:
                 break
         soup = BeautifulSoup(driver.page_source,'lxml')
@@ -157,22 +141,14 @@ class Scraping:
 
         while True:
             driver.execute_script(f"window.scrollTo({initialScroll},{finalScroll})")
-            # this command scrolls the window starting from
-            # the pixel value stored in the initialScroll
-            # variable to the pixel value stored at the
-            # finalScroll variable
+
             initialScroll = finalScroll
             finalScroll += 1000
-        
-            # we will stop the script for 3 seconds so that
-            # the data can load
+
             time.sleep(1)
-            # You can change it as per your needs and internet speed
         
             end = time.time()
         
-            # We will scroll for 20 seconds.
-            # You can change it as per your needs and internet speed
             if round(end - start) > 5:
                 break
         soup = BeautifulSoup(driver.page_source,'lxml')
@@ -184,28 +160,19 @@ class Scraping:
         time.sleep(3)
         start = time.time()
         
-        # will be used in the while loop
         initialScroll = 0
         finalScroll = 1000
 
         while True:
             driver.execute_script(f"window.scrollTo({initialScroll},{finalScroll})")
-            # this command scrolls the window starting from
-            # the pixel value stored in the initialScroll
-            # variable to the pixel value stored at the
-            # finalScroll variable
+
             initialScroll = finalScroll
             finalScroll += 1000
-        
-            # we will stop the script for 3 seconds so that
-            # the data can load
+
             time.sleep(1)
-            # You can change it as per your needs and internet speed
         
             end = time.time()
         
-            # We will scroll for 20 seconds.
-            # You can change it as per your needs and internet speed
             if round(end - start) > 5:
                 break
         soup = BeautifulSoup(driver.page_source,'lxml')
@@ -223,22 +190,14 @@ class Scraping:
 
         while True:
             driver.execute_script(f"window.scrollTo({initialScroll},{finalScroll})")
-            # this command scrolls the window starting from
-            # the pixel value stored in the initialScroll
-            # variable to the pixel value stored at the
-            # finalScroll variable
+
             initialScroll = finalScroll
             finalScroll += 1000
-        
-            # we will stop the script for 3 seconds so that
-            # the data can load
+
             time.sleep(1)
-            # You can change it as per your needs and internet speed
         
             end = time.time()
         
-            # We will scroll for 20 seconds.
-            # You can change it as per your needs and internet speed
             if round(end - start) > 5:
                 break
         soup = BeautifulSoup(driver.page_source,'lxml')
@@ -258,16 +217,7 @@ class Scraping:
             intro= intro.find('span')
             introR = intro.get_text().strip()
             return {"name":name,"about":introR}
-    # def get_about(self,url):
-    #     soup = self.get_wholePage(url)
-    #     intro = soup.find('div', {'class': 'display-flex ph5 pv3'})
-    #     if intro is None:
-    #         return "None"
-    #     else:
-    #         intro = intro.find('div',{'class':'inline-show-more-text inline-show-more-text--is-collapsed'})
-    #         intro= intro.find('span')
-    #         introR = intro.get_text().strip()
-    #         return introR
+
     def get_experience(self,url):
         soup = self.get_experiencePage(url)
         list_exp = soup.find_all("li",{"class":"pvs-list__paged-list-item artdeco-list__item pvs-list__item--line-separated"})
@@ -277,8 +227,7 @@ class Scraping:
         else:
             for index in range(len(list_exp)):
                 title_span = list_exp[index].find_all("span",{"class":"mr1 hoverable-link-text t-bold"})
-                
-                #title_li =[]
+
                 if len(title_span)>1:
                     timeline_li = list_exp[index].find_all("span",{"class":"t-14 t-normal"})
                     timeline = timeline_li[0].find("span",{"class":"visually-hidden"}).get_text()
